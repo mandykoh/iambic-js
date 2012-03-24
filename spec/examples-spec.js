@@ -23,18 +23,18 @@ describe('Parsing examples', function () {
 			] }
 		);
 
-		expect(eval('(' + parser.parse('The quick brown fox jumps over the lazy dog.').toString() + ')')).toEqual(
+		expect(eval('(' + parser.parse('The quick brown duck jumps over the lazy oyster.').toString() + ')')).toEqual(
 			{ type : 'Sentence', children : [
 				'The ',
 				{ type : 'DescribedThing', children : [
 					{ type : 'Adjective', children : [ { type : 'Word', children : [ '', 'quick' ] } ] },
 					{ type : 'Adjective', children : [ { type : 'Word', children : [ ' ', 'brown' ] } ] },
-					{ type : 'Noun', children : [ { type : 'Word', children : [ ' ', 'fox' ] } ] }
+					{ type : 'Noun', children : [ { type : 'Word', children : [ ' ', 'duck' ] } ] }
 				] },
 				' jumps over the ',
 				{ type : 'DescribedThing', children : [
 					{ type : 'Adjective', children : [ { type : 'Word', children : [ '', 'lazy' ] } ] },
-					{ type : 'Noun', children : [ { type : 'Word', children : [ ' ', 'dog' ] } ] }
+					{ type : 'Noun', children : [ { type : 'Word', children : [ ' ', 'oyster' ] } ] }
 				] },
 				'.'
 			] }
