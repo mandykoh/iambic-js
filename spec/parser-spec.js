@@ -74,12 +74,13 @@ describe('Parser', function () {
 		it('should throw an exception if parsing fails', function () {
 			var production = new Iambic.Production('A', new Iambic.LiteralPattern('a')),
 				parser = new Iambic.Parser(production),
-				actualError;
+				actualError,
+				that = this;
 
 			try {
 				parser.parse('b');
 
-				fail(new Error('Expected exception was not thrown'));
+				that.fail(new Error('Expected exception was not thrown'));
 			}
 			catch (e) {
 				expect(e.message).toEqual('Parse error');
@@ -98,12 +99,13 @@ describe('Parser', function () {
 					new Iambic.Production('B', new Iambic.LiteralPattern('b')),
 					new Iambic.Production('C', new Iambic.LiteralPattern('c'))
 				),
-				actualError;
+				actualError,
+				that = this;
 
 			try {
 				parser.parse('dc');
 
-				fail(new Error('Expected exception was not thrown'));
+				that.fail(new Error('Expected exception was not thrown'));
 			}
 			catch (e) {
 				expect(e.message).toEqual('Parse error');
@@ -124,13 +126,14 @@ describe('Parser', function () {
 					new Iambic.Production('B', new Iambic.LiteralPattern('b')),
 					new Iambic.Production('C', new Iambic.LiteralPattern('c'))
 				),
-				actualError;
+				actualError,
+				that = this;
 
 			try {
 				parser.maxErrors = 2;
 				parser.parse('dc');
 
-				fail(new Error('Expected exception was not thrown'));
+				that.fail(new Error('Expected exception was not thrown'));
 			}
 			catch (e) {
 				expect(e.message).toEqual('Parse error');

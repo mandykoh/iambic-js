@@ -95,4 +95,27 @@ describe('Parsing examples', function () {
 			] }
 		);
 	});
+
+	it('should support the error handling example', function () {
+		var parser = Iambic.compileParser(
+				"A := B C " +
+				"B := 'b' " +
+				"C := 'c'"
+			),
+			that = this;
+
+		try {
+			parser.parse('dc');
+
+			that.fail(new Error('Expected exception was not thrown'));
+		}
+		catch (e) {
+			expect(eval('(' + e.bestParse.toString() + ')')).toEqual(
+				{ type: 'A', children: [
+					{ type: 'B', children: [ { missing: true, children: [ '' ] } ] },
+					{ type: 'C', children: [ { lenient: true, children: [ 'd', 'c' ] } ] }
+				] }
+			);
+		}
+	});
 });
